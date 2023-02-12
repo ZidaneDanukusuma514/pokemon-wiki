@@ -1,8 +1,8 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/img/pokebook_logo.png";
-import Pokeball from "../assets/img/Pokeball.png";
-import Style from "./component.module.css";
+import Logo from "../../assets/img/pokebook_logo.png";
+import Pokeball from "../../assets/img/Pokeball.png";
+import Style from "./index.module.css";
 export interface IHeaderProps {}
 
 export default function Header(props: IHeaderProps) {
