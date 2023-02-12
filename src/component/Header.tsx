@@ -2,6 +2,7 @@ import * as React from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../assets/img/pokebook_logo.png";
 import Pokeball from "../assets/img/Pokeball.png";
+import Style from "./component.module.css";
 export interface IHeaderProps {}
 
 export default function Header(props: IHeaderProps) {
@@ -12,7 +13,7 @@ export default function Header(props: IHeaderProps) {
         <img src={Logo} className="w-[100px]" alt="Header_Logo" />
       </div>
 
-      <button onClick={() => setSidebar(!Sidebar)}>
+      <button className={Style.rotating} onClick={() => setSidebar(!Sidebar)}>
         <img src={Pokeball} className="w-[35px]" alt="mobile_button" />
       </button>
       <ul
@@ -22,17 +23,17 @@ export default function Header(props: IHeaderProps) {
       >
         <button
           onClick={() => setSidebar(!Sidebar)}
-          className="text-white bg-red-600 hover:bg-red-700  p-4  font-bold absolute top-0 right-0"
+          className="text-white bg-red-600 hover:bg-red-700 p-4 font-bold absolute top-0 right-0"
         >
           Exit
         </button>
-        <li>
+        <li className="flex-1">
           <NavLink to={"/"}>Home</NavLink>
         </li>
-        <li>
+        <li className="flex-1">
           <NavLink to={"/"}>Catalog</NavLink>
         </li>
-        <li>
+        <li className="flex-1">
           <NavLink to={"/about"}>about</NavLink>
         </li>
       </ul>
