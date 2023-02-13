@@ -8,7 +8,7 @@ export interface IHeaderProps {}
 export default function Header(props: IHeaderProps) {
   const [Sidebar, setSidebar] = React.useState(false);
   return (
-    <header className="flex items-center bg-red-500 p-4">
+    <header className="flex container mx-auto items-center bg-red-500 p-4">
       <div className="grow">
         <img src={Logo} className="w-[100px]" alt="Header_Logo" />
       </div>
