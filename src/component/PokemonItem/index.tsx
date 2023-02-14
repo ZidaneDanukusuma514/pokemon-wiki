@@ -1,7 +1,7 @@
 import * as React from "react";
 
 export interface IPokemonItemProps {
-  name?: string;
+  name: string;
 }
 
 export default function PokemonItem({ name }: IPokemonItemProps) {
