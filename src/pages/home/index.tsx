@@ -8,6 +8,7 @@ export interface IHomeProps {}
 
 export default function Home(props: IHomeProps) {
   const { getData, Data } = useStore();
+
   React.useEffect(() => {
     getData();
   }, []);

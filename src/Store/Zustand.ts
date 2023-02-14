@@ -5,20 +5,20 @@ export const BaseUrl = import.meta.env.VITE_BASEURL;
 export const ApiFilter = "?offset=1&limit=20";
 
 interface ZustandProps {
-  value: string;
+  Search: string;
   Data: any;
   Respon: any;
-  handleSearch: (text: string) => void;
+  handleSearch: (text: React.ChangeEvent<HTMLInputElement>) => void;
   getData: () => void;
 }
 
 export const useStore = create<ZustandProps>((set) => ({
-  value: "asd",
+  Search: "asd",
   Data: null,
   Respon: null,
   handleSearch: (text) => {
     set(() => ({
-      value: text,
+      Search: text.target.value,
     }));
   },
   getData: async () => {

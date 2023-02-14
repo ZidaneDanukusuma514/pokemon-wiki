@@ -1,11 +1,15 @@
 import * as React from "react";
+import { useStore } from "../../Store/Zustand";
 
 export interface ISearchProps {}
 
 export default function Search(props: ISearchProps) {
+  const { handleSearch } = useStore();
+
   return (
     <div className="flex py-4">
       <input
+        onChange={handleSearch}
         className="grow p-2 border-2 border-slate-700/75 hover:border-slate-700 rounded-l-lg placeholder-black/75 hover:placeholder-black"
         type="text"
         placeholder="Find your pokemon here..."
