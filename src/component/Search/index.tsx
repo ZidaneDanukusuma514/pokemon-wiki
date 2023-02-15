@@ -4,7 +4,7 @@ import { useStore } from "../../Store/Zustand";
 export interface ISearchProps {}
 
 export default function Search(props: ISearchProps) {
-  const { handleSearch } = useStore();
+  const { handleSearch, Search, getSubmit } = useStore();
 
   return (
     <div className="flex py-4">
@@ -14,7 +14,10 @@ export default function Search(props: ISearchProps) {
         type="text"
         placeholder="Find your pokemon here..."
       />
-      <button className="p-2 rounded-r-lg bg-rose-600 hover:bg-rose-800 text-white font-semibold">
+      <button
+        onClick={() => getSubmit(Search)}
+        className="p-2 rounded-r-lg bg-rose-600 hover:bg-rose-800 text-white font-semibold"
+      >
         Submit
       </button>
     </div>
