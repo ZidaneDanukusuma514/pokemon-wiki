@@ -22,7 +22,11 @@ export default function Modal({ url }: IModalProps) {
       <h1 className="text-center font-semibold">
         {!Data ? "no name" : Data.name}
       </h1>
-      <img src={!Data ? null : Data.sprites.front_default} alt="pokemon" />
+      <img
+        className="w-[100px]"
+        src={!Data ? null : Data.sprites.front_default}
+        alt="pokemon"
+      />
     </div>
   );
 }

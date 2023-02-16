@@ -5,5 +5,9 @@ export interface IPokemonListProps {
 }
 
 export default function PokemonList({ children }: IPokemonListProps) {
-  return <div className="grid grid-cols-2 gap-1">{children}</div>;
+  return (
+    <div className="grid grid-cols-2 md:grid-cols-5 gap-1 md:gap-4">
+      {children}
+    </div>
+  );
 }
