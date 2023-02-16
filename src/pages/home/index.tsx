@@ -1,3 +1,4 @@
+import axios from "axios";
 import * as React from "react";
 import PokemonItem from "../../component/PokemonItem";
 import PokemonList from "../../component/PokemonList";
@@ -8,11 +9,11 @@ export interface IHomeProps {}
 
 export default function Home(props: IHomeProps) {
   const { getData, Data } = useStore();
+  const [Pokemon, setPokemon] = React.useState<any>(null);
 
   React.useEffect(() => {
     getData();
   }, []);
-
   return (
     <div className="mx-auto container bg-slate-100">
       <Search />
@@ -20,7 +21,7 @@ export default function Home(props: IHomeProps) {
         {!Data
           ? null
           : Data.map((e: any, index: number) => (
-              <PokemonItem key={index} name={e.name} />
+              <PokemonItem key={index} url={e.url} name={e.name} />
             ))}
       </PokemonList>
     </div>

@@ -5,24 +5,34 @@ import { PokemonClient } from "pokenode-ts";
 const api = new PokemonClient();
 
 export const BaseUrl = import.meta.env.VITE_BASEURL;
-export const ApiFilter = "?offset=1&limit=20";
+export const ApiFilter = "?offset=0&limit=20";
 
 interface ZustandProps {
   Search: string;
-  Data: any;
   Respon: any;
+  Data: any;
+  Pokemon: any;
+  ModalStatus: boolean;
+  handleModal: (q: boolean) => void;
   handleSearch: (text: React.ChangeEvent<HTMLInputElement>) => void;
   getData: () => void;
   getSubmit: (Search: string) => void;
 }
 
 export const useStore = create<ZustandProps>((set) => ({
-  Search: "asd",
+  Search: "",
+  ModalStatus: false,
+  Pokemon: null,
   Data: null,
   Respon: null,
   handleSearch: (text) => {
     set(() => ({
       Search: text.target.value,
+    }));
+  },
+  handleModal: (q: boolean) => {
+    set((state) => ({
+      ModalStatus: q,
     }));
   },
   getSubmit: async (Search: string) => {
@@ -35,15 +45,22 @@ export const useStore = create<ZustandProps>((set) => ({
           console.log([data]);
       }) // will output "Luxray"
       .catch((error) => console.error(error));
+    set(() => ({
+      Search: "",
+    }));
   },
   getData: async () => {
-    await axios.get(BaseUrl + ApiFilter).then((respon) => {
-      set(() => ({
-        Respon: respon.data,
-      }));
-    });
-    set((state) => ({
-      Data: state.Respon.results,
-    }));
+    await axios
+      .get(BaseUrl + ApiFilter)
+      .then((respon) => {
+        set(() => ({
+          Respon: respon.data,
+        }));
+      })
+      .then(() => {
+        set((state) => ({
+          Data: state.Respon.results,
+        }));
+      });
   },
 }));
