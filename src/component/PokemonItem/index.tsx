@@ -12,7 +12,7 @@ export default function PokemonItem({ name, url }: IPokemonItemProps) {
   const [Data, setData] = React.useState<any>();
 
   const handleGetFullData = async () => {
-    axios.get(url).then((res) => {
+    await axios.get(url).then((res) => {
       setData(res.data);
     });
   };

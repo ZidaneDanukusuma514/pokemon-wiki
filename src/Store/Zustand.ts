@@ -16,13 +16,14 @@ interface ZustandProps {
   handleModal: (q: boolean) => void;
   handleSearch: (text: React.ChangeEvent<HTMLInputElement>) => void;
   getData: () => void;
+  getFullData: (value: any) => void;
   getSubmit: (Search: string) => void;
 }
 
 export const useStore = create<ZustandProps>((set) => ({
   Search: "",
   ModalStatus: false,
-  Pokemon: null,
+  Pokemon: [],
   Data: null,
   Respon: null,
   handleSearch: (text) => {
@@ -38,29 +39,24 @@ export const useStore = create<ZustandProps>((set) => ({
   getSubmit: async (Search: string) => {
     await api
       .getPokemonByName(Search)
-      .then((data) => {
-        set(() => ({
-          Data: [data],
-        })),
-          console.log([data]);
+      .then((res) => {
+        console.log(res);
       }) // will output "Luxray"
       .catch((error) => console.error(error));
-    set(() => ({
-      Search: "",
-    }));
   },
   getData: async () => {
     await axios
       .get(BaseUrl + ApiFilter)
+      .then((respon) => respon.data.results)
       .then((respon) => {
         set(() => ({
-          Respon: respon.data,
-        }));
-      })
-      .then(() => {
-        set((state) => ({
-          Data: state.Respon.results,
+          Data: respon,
         }));
       });
+  },
+  getFullData: (value) => {
+    set((state) => ({
+      Pokemon: [...state.Pokemon, value],
+    }));
   },
 }));
